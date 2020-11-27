@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve",
+    "dev": "webpack-dev-server --open--mode=development",
     "build": "webpack --mode production"
   },
   "repository": {

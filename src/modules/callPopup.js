@@ -8,6 +8,7 @@ const callPopup = () => {
     
     contacts.forEach((elem)=>{
         elem.addEventListener('click', (event)=>{
+            event.preventDefault();
             const target = event.target;
             if (target.classList.contains('call-btn')) {
                 popupCall.style.display = 'block';
@@ -16,6 +17,7 @@ const callPopup = () => {
     });
 
     popup.addEventListener('click', (event)=>{
+        event.preventDefault();
         let target = event.target;
         if(target.classList.contains('popup-close')) {
             popup.style.display = 'none';
