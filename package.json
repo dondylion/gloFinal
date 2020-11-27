@@ -1,0 +1,32 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dondylion/gloFinal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dondylion/gloFinal/issues"
+  },
+  "homepage": "https://github.com/dondylion/gloFinal#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@webpack-cli/serve": "^1.1.0",
+    "babel-loader": "^8.2.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^3.11.0"
+  },
+  "description": ""
+}
