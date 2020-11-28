@@ -28,7 +28,7 @@ const sendForm = () => {
 
             let target = event.target;
             if (target.name==="user_phone") {
-                target.value = target.value.replace(/[^0-9]/, '');
+                target.value = target.value.replace(/[^0-9\+]/, '');
             } else if (target.name === 'user_name') {
                 target.value = target.value.replace(/[^А-Яа-яЁё]/, '');
             }
