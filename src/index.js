@@ -6,8 +6,10 @@ import callPopup from './modules/callPopup';
 import sendForm from './modules/sendForm';
 import popupDiscount from './modules/popupDiscount';
 import accordion from './modules/accordion';
+import checkPopup from './modules/checkPopup';
 
 callPopup();
 sendForm();
 popupDiscount();
 accordion();
+checkPopup();

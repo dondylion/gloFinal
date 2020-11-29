@@ -2,9 +2,9 @@
 
 const accordion = ()=>{
 
-    const panelGroup = document.querySelectorAll('.panel-group'),
-        panelBody = document.querySelectorAll('.panel-collapse'),
-        panelHeading = document.querySelectorAll('.panel-heading');
+    const panelBody = document.querySelectorAll('.panel-collapse'),
+        panelHeading = document.querySelectorAll('.panel-heading'),
+        constructBtn = document.querySelectorAll('.construct-btn');
 
         panelHeading.forEach((elem, i)=>{
             elem.addEventListener('click', ()=>{
@@ -16,6 +16,15 @@ const accordion = ()=>{
                     }
                 } 
             });
+        });
+
+        constructBtn.forEach((elem, i)=>{
+            if(i!==3){
+                elem.addEventListener('click', ()=>{
+                    panelBody[i].classList.remove('in');
+                    panelBody[i+1].classList.add('in');
+                });
+            }
         });
 };
 
