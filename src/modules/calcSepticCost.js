@@ -111,7 +111,9 @@ const calcSepticCost = () => {
         form = discountPopup.querySelector('form');
 
     constructBtn.addEventListener('click', ()=>{
-        discountPopup.style.display = 'block';
+        if(distance.value) {
+            discountPopup.style.display = 'block';
+        }
     });
 
     discountPopup.addEventListener('click', (event)=>{       

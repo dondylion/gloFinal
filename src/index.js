@@ -8,6 +8,7 @@ import popupDiscount from './modules/popupDiscount';
 import accordion from './modules/accordion';
 import checkPopup from './modules/checkPopup';
 import calcSepticCost from './modules/calcSepticCost';
+import addSentence from './modules/addSentence';
 
 callPopup();
 sendForm();
@@ -15,3 +16,4 @@ popupDiscount();
 accordion();
 checkPopup();
 calcSepticCost();
+addSentence();
