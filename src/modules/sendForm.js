@@ -21,10 +21,10 @@ const sendForm = () => {
         });
     };
 
-    for (let i=0; i<forms.length; i++) {
+    for (let i=0; i<forms.length-1; i++) {
         const form = forms[i];
 
-        if(form.classList.contains('director-form') || form.classList.contains('popup-consultation')) {
+        if(form.classList.contains('director-form')) {
             continue;
         }
 
