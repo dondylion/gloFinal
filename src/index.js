@@ -9,6 +9,7 @@ import accordion from './modules/accordion';
 import checkPopup from './modules/checkPopup';
 import calcSepticCost from './modules/calcSepticCost';
 import addSentence from './modules/addSentence';
+import consultation from './modules/consultation';
 
 callPopup();
 sendForm();
@@ -17,3 +18,4 @@ accordion();
 checkPopup();
 calcSepticCost();
 addSentence();
+consultation();

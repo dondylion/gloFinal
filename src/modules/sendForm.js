@@ -24,6 +24,10 @@ const sendForm = () => {
     for (let i=0; i<forms.length; i++) {
         const form = forms[i];
 
+        if(form.classList.contains('director-form') || form.classList.contains('popup-consultation')) {
+            continue;
+        }
+
         form.addEventListener('input', (event)=>{
 
             let target = event.target;
@@ -68,7 +72,6 @@ const sendForm = () => {
                 });
         });
     }
-
 };
 
 export default sendForm;
