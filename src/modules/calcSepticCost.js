@@ -20,6 +20,8 @@ const calcSepticCost = () => {
         selects[i] = selectBox[i].querySelector('select');
     }
 
+    let calcData = {};
+
     const calculating = () => {
         let total = 10000;
 
@@ -80,7 +82,19 @@ const calcSepticCost = () => {
         }
 
         calcResult.value = Math.ceil(total);
+
+        for(let i=0;i<4;i++){
+            calcData[`selects[${i}]`] = selects[i].options[selects[i].selectedIndex].textContent;
+        }
+        calcData.septicType = septicType.checked;
+        calcData.bottomType = bottomType.checked;
+        calcData.total = calcResult.value;
     };
+
+    distance.addEventListener('input', ()=>{
+        distance.value = distance.value.replace(/[^0-9]/, '');
+        calcData.distance = distance.value;
+    });
 
     calculating();
     accordion.addEventListener('change', (event)=>{
@@ -90,9 +104,11 @@ const calcSepticCost = () => {
         }
     });
 
-    //Отправка данных
+    //Всплывающее окно
+
     const constructBtn = document.querySelectorAll('.construct-btn')[3],
-        discountPopup = document.querySelector('.popup-discount');
+        discountPopup = document.querySelector('.popup-discount'),
+        form = discountPopup.querySelector('form');
 
     constructBtn.addEventListener('click', ()=>{
         discountPopup.style.display = 'block';
@@ -108,6 +124,66 @@ const calcSepticCost = () => {
                 discountPopup.style.display = 'none';
             }
         }
+    });
+
+    //Отправка формы
+
+    const errorMessage = 'Что-то пошло не так...',
+        loadMessage = 'Загрузка...',
+        successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
+
+    const statusMessage = document.createElement('div');
+    statusMessage.style.cssText = 'font-size: 2rem;';
+
+    const postData = (body) => {
+        return fetch('./server.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    };
+
+    form.addEventListener('input', (event)=>{
+        let target = event.target;
+        if (target.name==="user_phone") {
+            target.value = target.value.replace(/[^0-9\+]/, '');
+        } else if (target.name === 'user_name') {
+            target.value = target.value.replace(/[^А-Яа-яЁё]/, '');
+        }
+    });
+
+    form.addEventListener('submit', (event)=>{
+        event.preventDefault();
+        form.appendChild(statusMessage);
+        setTimeout(()=>{
+            form.removeChild(statusMessage);
+            discountPopup.style.display = 'none';
+        }, 5000);
+        statusMessage.textContent = loadMessage;
+
+        const formData = new FormData(form);
+
+        for(let val of formData.entries()) {
+            calcData[val[0]] = val[1];
+        }
+
+        postData(calcData)
+            .then((response)=>{
+                if (response.status!==200) {
+                    throw new Error('status network not 200');
+                }   
+                statusMessage.textContent = successMessage;
+                const inputs = form.querySelectorAll('input');
+                inputs.forEach((item)=>{
+                    item.value = '';
+                });
+            })
+            .catch((error)=>{
+                statusMessage.textContent = errorMessage;
+                console.error(error);
+            });
     });
 };
 
